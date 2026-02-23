@@ -7,7 +7,7 @@ project(Toy2D
 
 # include(cmake/FindVulkan.cmake)
 # include(cmake/FindSDL2.cmake)
-# include(cmake/CopyFiles.cmake)
+include(cmake/CopyFiles.cmake)
 
 set(ENV{VULKAN_SDK} "$ENV{HOME}/VulkanSDK/1.4.321.0/macOS")
 

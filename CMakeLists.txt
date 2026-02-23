@@ -5,11 +5,16 @@ project(Toy2D
         LANGUAGES CXX
         DESCRIPTION "a toy 2d renderer made in vulkan")
 
-include(cmake/FindVulkan.cmake)
-include(cmake/FindSDL2.cmake)
-include(cmake/CopyFiles.cmake)
+# include(cmake/FindVulkan.cmake)
+# include(cmake/FindSDL2.cmake)
+# include(cmake/CopyFiles.cmake)
 
-find_program(GLSLC_PROGRAM glslc REQUIRED)
+set(ENV{VULKAN_SDK} "$ENV{HOME}/VulkanSDK/1.4.321.0/macOS")
+
+find_package(glfw3 REQUIRED CONFIG)
+find_package(Vulkan REQUIRED)
+
+find_program(GLSLC_PROGRAM glslc REQUIRED HINTS $ENV{VULKAN_SDK}/bin)
 
 message(STATUS "run glslc to compile shaders ...")
 execute_process(COMMAND ${GLSLC_PROGRAM} ${CMAKE_SOURCE_DIR}/shader/shader.vert -o ${CMAKE_SOURCE_DIR}/vert.spv)
